@@ -1,9 +1,10 @@
 // const path = require('path'); //One test was written in such a way that these 2 lines don't work
 // const movies = require(path.join(__dirname,'data','movies.json'));
+import {fetchWithTimeout} from './services';
 const movies = require('./data/movies.json');
 
 export function fetchMovies() {
-
+    const resolveFunction = () => movies;
 }
 
 
