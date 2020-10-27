@@ -16,3 +16,19 @@ const movies = require('./data/movies.json');
 
 // export { fetchMovies }; //for some reason this didn't work to export the function above;
 //had to pjt the export keyword instead
+
+// Test 4.7
+function getBooksAndMovies() {
+    return Promise.all([fetchBooks(), fetchMovies()])
+        .then(([books, movies]) => ({
+            books,
+            movies
+        }))
+        .catch(error => console.log("Error fetching books and movies", error));
+}
+
+const getBooksAndMoviesPromise = getBooksAndMovies();
+
+getBooksAndMoviesPromise.then(results => {
+    console.log('getBooksAndMoviesPromise', results);
+})
