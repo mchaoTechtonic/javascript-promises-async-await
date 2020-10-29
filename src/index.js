@@ -1,6 +1,9 @@
 // const path = require('path'); //One test was written in such a way that these 2 lines don't work
 // const movies = require(path.join(__dirname,'data','movies.json'));
-import { fetchWithTimeout, fetchMovies, fetchBooks } from './services';
+import {
+    fetchWithTimeout, fetchMovies, fetchBooks,
+    asyncFetchBooks, asyncFetchMovies
+} from './services';
 const movies = require('./data/movies.json');
 
 // export function fetchMovies() {
@@ -43,3 +46,11 @@ const getBooksOrMoviesPromise = getBooksOrMovies();
 getBooksOrMoviesPromise.then(results => {
     console.log('getBooksOrMoviesPromise', results);
 })
+
+async function getBooksAndMoviesAsync() {
+    try {
+        const [books, movies] = await Promise.all([asyncFetchBooks(), asyncFetchMovies()])
+    } catch (error) {
+        console.log("Error fetching books and movies", error);
+    }
+}
